@@ -1,0 +1,5 @@
+.assets/
+db.sqlite3
+static/
+.env/
+.venv/
