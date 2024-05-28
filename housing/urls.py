@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/',include(('customadmin.urls','customadmin'),namespace='customadmin')),
     path('landload/',include(('landload.urls','landload'),namespace='landload')),
     path('tenat/',include(('tenat.urls','tenat'),namespace='tenat')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
 
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-
+from landload.models import EmailTemplate
 logger = logging.getLogger(__name__)
 
 
@@ -79,6 +79,32 @@ def send_from_template(to, subject, template, context, **kwargs):
 
 
 
+# def verification_mail(token,email):
+#     mail_list, email_subject = email, 'Registration Verification'
+#     print("pass1")
+#     # if obj.status == "Waiting":
+#     #     mail_list = obj.doctors_call.user.email
+#     #     print("mail_list", mail_list)
+#     #     email_subject = f"patient {obj.patients_call.user} schedule a {'Emergency' if obj.call_type == 'Emergency' else ''} meeting with you."
+    
+#     # email_template = "email/verification.html"
+#     # context = {
+#     #     "data": token,
+#     #     # "base_url": settings.DOMAIN + settings.MEDIA_URL,
+#     # }
+#     email_template = "email/customemail.html"
+#     objectdata=EmailTemplate.objects.get(id=2)
+#     context = {
+#         # "data": token,
+#         "object":objectdata
+        
+#         # "base_url": settings.DOMAIN + settings.MEDIA_URL,
+#     }
+#     Thread(
+#         target=send_from_template,
+#         args=(mail_list, email_subject, email_template, context),
+#     ).start()
+from django.template import Template, Context
 def verification_mail(token,email):
     mail_list, email_subject = email, 'Registration Verification'
     print("pass1")
@@ -87,9 +113,50 @@ def verification_mail(token,email):
     #     print("mail_list", mail_list)
     #     email_subject = f"patient {obj.patients_call.user} schedule a {'Emergency' if obj.call_type == 'Emergency' else ''} meeting with you."
     
-    email_template = "email/verification.html"
+    # email_template = "email/verification.html"
+    # context = {
+    #     "data": token,
+    #     # "base_url": settings.DOMAIN + settings.MEDIA_URL,
+    # }
+    email_template = "email/customemail.html"
+    objectdata=EmailTemplate.objects.get(id=2)
+    context_data = {
+        # "data": token,
+        "data":token
+        
+        # "base_url": settings.DOMAIN + settings.MEDIA_URL,
+    }
+    objectdata_rendered = Template(objectdata.body).render(Context(context_data))
+    context={
+        "objectdata_rendered":objectdata_rendered
+    }
+    Thread(
+        target=send_from_template,
+        args=(mail_list, email_subject, email_template, context),
+    ).start()
+
+# def account_activation_mail(name,email):
+#     mail_list, email_subject = email, 'Your Account Has Been Approved!'
+#     email_template = "email/activate.html"
+#     context = {
+#         "data": name,
+        
+#         # "base_url": settings.DOMAIN + settings.MEDIA_URL,
+#     }
+#     Thread(
+#         target=send_from_template,
+#         args=(mail_list, email_subject, email_template, context),
+#     ).start()
+
+def account_activation_mail(name,email):
+    '''just for customized the email via admin'''
+    mail_list, email_subject = email, 'Your Account Has Been Approved!'
+    email_template = "email/customemail.html"
+    objectdata=Email.object.get(id=2)
     context = {
-        "data": token,
+        "data": name,
+        "object":objectdata
+        
         # "base_url": settings.DOMAIN + settings.MEDIA_URL,
     }
     Thread(
@@ -97,17 +164,6 @@ def verification_mail(token,email):
         args=(mail_list, email_subject, email_template, context),
     ).start()
 
-def account_activation_mail(name,email):
-    mail_list, email_subject = email, 'Your Account Has Been Approved!'
-    email_template = "email/activate.html"
-    context = {
-        "data": name,
-        # "base_url": settings.DOMAIN + settings.MEDIA_URL,
-    }
-    Thread(
-        target=send_from_template,
-        args=(mail_list, email_subject, email_template, context),
-    ).start()
 
 def account_rejected_mail(name,email):
     mail_list, email_subject = email, 'Update on Your Account Application'

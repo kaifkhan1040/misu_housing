@@ -81,9 +81,14 @@ def signup(request):
 #             messages.info(request, f'account done not exit plz sign in')
 #     form = AuthenticationForm()
 #     return render(request, 'registration/login.html', {'form': form, 'title': 'log in'})
-
+from landload.models import EmailTemplate
+from django.template import Template, Context
 def checkemail(request):
-    return render(request,'email/reject_account.html')
+    # email_template = "email/customemail.html"
+    objectdata=EmailTemplate.objects.get(id=2)
+    context_data = {'data': 'kaifkhan'}
+    objectdata_rendered = Template(objectdata.body).render(Context(context_data))
+    return render(request,'email/customemail.html',{'object':objectdata,"data":"kaif","objectdata_rendered":objectdata_rendered})
 # Create your views here.
 def loginPage(request):
     cookies1=''

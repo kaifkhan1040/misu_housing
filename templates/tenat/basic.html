@@ -385,6 +385,7 @@
                                     </g>
                                 </g>
                             </svg> {% endcomment %}
+                            {% comment %} <img src="{% static 'images/ticketing_logo11/LOGO.png' %}"> {% endcomment %}
                         </span>
                         {% comment %} <h2 class="brand-text">Vuexy</h2> {% endcomment %}
                     </a></li>
@@ -448,17 +449,12 @@
                         </li>
                     </ul>
                 </li> {% endcomment %}
-                {% if user.is_superuser %}<li class=" nav-item"><a class="d-flex align-items-center" href="{% url 'landload:landload_list' %}"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">New Landload</span></a>{% endif %}
-                {% if user.is_superuser %}<li class=" nav-item"><a class="d-flex align-items-center" href="/landload/emailtemplate/update/2/"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Email</span></a>{% endif %}
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Profile</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Documents</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">History</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Actions</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Tickets</span></a>
 
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Listings</span></a>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Tenants</span></a>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Leads</span></a>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Actions</span></a>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Tickets</span></a>
-                        <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">Promotion</span></a>
-
-                    <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" data-i18n="User">User</span></a> -->
                     {% comment %} <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="app-user-list.html"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">List</span></a>
                         </li>
@@ -807,18 +803,6 @@
     </div>
     <!-- END: Main Menu-->
     <div class="app-content content ">
-        {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'error' %}
-        <div class="alert alert-danger" role="alert">
-            {{message}}
-        </div>
-            {% else %}
-        <div class="alert alert-{{ message.tags }}" role="alert">
-            {{message}}
-        </div>
-            {% endif %}
-        {% endfor %}{% endif %}
         {% block content %}{% endblock content %}
     </div>
     <div class="sidenav-overlay"></div>

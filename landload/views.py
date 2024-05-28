@@ -7,7 +7,8 @@ from users.models import CustomUser
 from django.http import JsonResponse
 from django.core.serializers import serialize
 from users.email import account_activation_mail,account_rejected_mail
-
+from .forms import EmailTemplateForm
+from .models import EmailTemplate
 # Create your views here.
 @login_required(login_url='/user')
 def home(request):
@@ -55,3 +56,47 @@ def reject_landload(request,pk):
         obj.first_name+obj.last_name if obj.last_name else "",
         obj.email)
     return JsonResponse(True,safe=False)
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import CreateView,UpdateView
+
+class EmailTemplateView(SuccessMessageMixin, CreateView):
+    form_class = EmailTemplateForm
+    model = EmailTemplate
+    template_name = "landload/emailtemplate.html"
+    success_message = "Added Succesfully"
+    def get_success_url(self):
+        return reverse('/')
+from django.urls import reverse_lazy
+
+class EmailTemplateUpdateView(SuccessMessageMixin, UpdateView):
+    model = EmailTemplate
+    form_class = EmailTemplateForm
+    template_name = "landload/emailtemplate.html"  # Update the template name if needed
+    success_message = "Updated Successfully"  # Change success message as needed
+    success_url = reverse_lazy('landload:home')  # Update the success URL
+
+    def get_success_url(self):
+        # Modify the success URL as needed
+        return reverse_lazy('landload:home')
+# import json
+# def updatetemplate(request,pk):
+#     print('uuuuuuuuuuuuuuuuuuuuuuuuuuu')
+#     email_template = EmailTemplate.objects.get(id=pk)
+    
+#     if request.method == 'POST':
+#         print(request)
+#         json_data = json.loads(request.POST['id_body'])
+#         print(json_data)
+#         form = EmailTemplateForm(request.POST, instance=email_template)
+#         data=request.POST.get('id_body')
+#         print("kkkkkkkkkkkkkkkkkkkkkkk",data)
+#         if form.is_valid():
+#             print('vallllllllllllllllllllllll')
+#             form.save()
+#             return JsonResponse(True,safe=False)
+#         else:
+#             print(form.errors)
+#         return JsonResponse(False,safe=False)
+
+
+

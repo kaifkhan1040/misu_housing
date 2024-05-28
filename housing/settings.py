@@ -41,7 +41,35 @@ INSTALLED_APPS = [
     'customadmin',
     'landload',
     'tenat',
+    'crispy_forms',
+    'ckeditor'
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# CKEditor Settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js' 
+CKEDITOR_CONFIGS = {
+    'default':
+        {
+            'toolbar': 'full',
+        #     'toolbar': [
+        #     # ['preview'],
+        #     ['Preview','Bold', 'Italic', 'Underline'],
+        #     ['NumberedList', 'BulletedList'],
+        #     ['Link', 'Unlink'],
+        #     ['RemoveFormat', 'Source']
+        # ],
+            'width': '100%',
+            'autoGrow_onStartup': True,  # Automatically grows the editor
+        'autoGrow_maxHeight': 800,  # Optional: Max height to which editor can grow
+        'autoGrow_minHeight': 300, 
+            'extraPlugins': ','.join([
+                'codesnippet',
+            ]),
+        },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
