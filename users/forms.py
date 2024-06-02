@@ -58,16 +58,17 @@ class UserProfileForm(ModelForm):
         self.fields['first_name'].widget.attrs.update({'class': 'form-control valid'})
         self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
         self.fields['email'].widget.attrs.update({'class': 'form-control'})
-        self.fields['phone_number'].widget.attrs.update({'class': 'form-control'})
+        self.fields['phone_number'].widget.attrs.update({'class': 'form-control','maxlength':10,'minlength':10})
         self.fields['address'].widget.attrs.update({'class': 'form-control'})
         self.fields['state'].widget.attrs.update({'class': 'form-control'})
         self.fields['zipcode'].widget.attrs.update({'class': 'form-control'})
-        self.fields['country'].widget.attrs.update({'class': 'select2 form-select select2-hidden-accessible'})
+        self.fields['image'].widget.attrs.update({'hidden': False,"id":'account-upload-form'})
+        self.fields['country'].widget.attrs.update({'class': 'select2 form-select ','maxlength':8})
 
     class Meta:
             model = CustomUser
             fields = ('first_name', 'last_name','email','phone_number','address',
-            'state','zipcode','country')
+            'state','zipcode','country','image')
 
     # widgets = {
     #         'first_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'accountFirstName'}),

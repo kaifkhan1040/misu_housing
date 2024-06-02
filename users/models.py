@@ -31,10 +31,10 @@ class CustomUser(AbstractUser):
     token = models.CharField(max_length=16)
     # company=models.ForeignKey(Company,on_delete=models.CASCADE)
     phone_number=models.CharField(max_length=10,null=True,blank=True)
-    image = models.ImageField(upload_to='user_profile/', null=True)
+    image = models.ImageField(upload_to='user_profile/', null=True,blank=True)
     address = models.CharField(max_length=500,null=True,blank=True)
     state = models.CharField(max_length=100,null=True,blank=True)
-    zipcode = models.CharField(max_length=25,null=True,blank=True)
+    zipcode = models.CharField(max_length=8,null=True,blank=True)
     country = models.CharField(max_length=255,null=True,blank=True)
 
     def __str__(self):

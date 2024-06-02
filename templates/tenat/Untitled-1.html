@@ -1,5 +1,5 @@
 {% extends 'tenat/basic.html' %} 
-
+{% load crispy_forms_tags %}
 {% load static %}
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -86,71 +86,58 @@
                             <div class="card-body py-2 my-25">
                                 <!-- header section -->
                                 <div class="d-flex">
-                                    <!-- <a href="#" class="me-25">
-                                        <img src= "{% if user.image %} {{user.image.url}}{% else %}{% static 'app-assets/images/portrait/small/avatar-s-11.jpg' %}{% endif %}" id="account-upload-img" class="uploadedAvatar rounded me-50" alt="profile image" height="100" width="100" />
-                                    </a> -->
+                                    <a href="#" class="me-25">
+                                        <img src="{% static 'app-assets/images/portrait/small/avatar-s-11.jpg' %}" id="account-upload-img" class="uploadedAvatar rounded me-50" alt="profile image" height="100" width="100" />
+                                    </a>
                                     <!-- upload and reset button -->
-                                    <!-- <div class="d-flex align-items-end mt-75 ms-1">
+                                    <div class="d-flex align-items-end mt-75 ms-1">
                                         <div>
                                             <label for="account-upload" class="btn btn-sm btn-primary mb-75 me-75">Upload</label>
                                             <input type="file" id="account-upload" hidden accept="image/*" />
-                                            {{form.image}}
                                             <button type="button" id="account-reset" class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
                                             <p class="mb-0">Allowed file types: png, jpg, jpeg.</p>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <!--/ upload and reset button -->
                                 </div>
                                 <!--/ header section -->
 
                                 <!-- form -->
-                                <!-- <form method="POST" action="" class="validate-form mt-2 pt-50"> -->
-                                    <form  method="POST" action="" class=" mt-2 pt-50" enctype="multipart/form-data">
-
-                                    {% csrf_token %}
+                                <form class="validate-form mt-2 pt-50">
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountFirstName">First Name</label>
-                                            <!-- <input type="text" class="form-control" id="accountFirstName" name="firstName" placeholder="John" value="John" data-msg="Please enter first name" /> -->
+                                            
                                             {{form.first_name}}
                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountLastName">Last Name</label>
                                             {{form.last_name}}
-                                            <!-- <input type="text" class="form-control" id="accountLastName" name="lastName" placeholder="Doe" value="Doe" data-msg="Please enter last name" /> -->
                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountEmail">Email</label>
-                                            {{form.email}}    
-                                            <!-- <input type="email" class="form-control" id="accountEmail" name="email" placeholder="Email" value="johndoe@gmail.com" /> -->
-                                        </div>
+                                            {{form.email}}                                        </div>
                                         <!-- <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountOrganization">Organization</label>
                                             <input type="text" class="form-control" id="accountOrganization" name="organization" placeholder="Organization name" value="PIXINVENT" />
                                         </div> -->
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountPhoneNumber">Phone Number</label>
-                                            {{form.phone_number}}  
-                                            <!-- <input type="text" class="form-control account-number-mask" id="accountPhoneNumber" name="phoneNumber" placeholder="Phone Number" value="457 657 1237" /> -->
-                                        </div>
+                                            {{form.phone_number}}                                        </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountAddress">Address</label>
-                                            {{form.address}}  
-                                            <!-- <input type="text" class="form-control" id="accountAddress" name="address" placeholder="Your Address" /> -->
-                                        </div>
+                                            {{form.address}}                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountState">State</label>
-                                            {{form.state}} 
-                                            <!-- <input type="text" class="form-control" id="accountState" name="state" placeholder="State" /> -->
-                                        </div>
+                                            {{form.state}}                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountZipCode">Zip Code</label>
-                                            {{form.zipcode}}
-                                            <!-- <input type="text" class="form-control account-zip-code" id="accountZipCode" name="zipCode" placeholder="Code" maxlength="6" /> -->
+                                            {{form.zipcode}}     
+                                            
                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="country">Country</label>
-                                            <!-- <select id="country" class="select2 form-select">
+                                            <select id="country" class="select2 form-select">
                                                 <option value="">Select Country</option>
                                                 <option value="Australia">Australia</option>
                                                 <option value="Bangladesh">Bangladesh</option>
@@ -176,20 +163,19 @@
                                                 <option value="United Arab Emirates">United Arab Emirates</option>
                                                 <option value="United Kingdom">United Kingdom</option>
                                                 <option value="United States">United States</option>
-                                            </select> -->
-                                            {{form.country}}
+                                            </select>
+                                            <!-- {{form.country}}  -->
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" onclick="sub001()" class="btn btn-primary mt-1 me-1">Save changes</button>
+                                            <button type="submit" class="btn btn-primary mt-1 me-1">Save changes</button>
                                             <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
                                         </div>
                                     </div>
                                 </form>
                                 <!--/ form -->
                             </div>
-
                         </div>
-                                
+
                         <!-- deactivate account  -->
                         <div class="card">
                             <div class="card-header border-bottom">
@@ -203,16 +189,15 @@
                                     </div>
                                 </div>
 
-                                <form id="formAccountDeactivation1" method="post" action="{% url 'tenat:deactivate' %}" class="validate-form11" onsubmit="return false">
+                                <form id="formAccountDeactivation" class="validate-form" onsubmit="return false">
                                     <div class="form-check">
-                                        <!-- <input type="hidden" value="{% csrf_token %}" hidden> -->
-                                        <input required class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" data-msg="Please confirm you want to delete account" />
+                                        <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation" data-msg="Please confirm you want to delete account" />
                                         <label class="form-check-label font-small-3" for="accountActivation">
                                             I confirm my account deactivation
                                         </label>
                                     </div>
                                     <div>
-                                        <button onclick="deactivate001()" class="btn btn-danger deactivate-account mt-1">Deactivate Account</button>
+                                        <button type="submit" class="btn btn-danger deactivate-account mt-1">Deactivate Account</button>
                                     </div>
                                 </form>
                             </div>
@@ -249,73 +234,14 @@
     <script src="{% static 'app-assets/js/scripts/pages/page-account-settings-account.js' %}"></script>
     <!-- END: Page JS-->
 
- <script>
-    deactivateAcc = document.querySelector('#formAccountDeactivation1'),
-    deactivateButton = deactivateAcc.querySelector('.deactivate-account');
-    const accountActivation = document.querySelector('#accountActivation');
-
-    if (deactivateAcc) {
-    $(document).on('click', '#accountActivation', function () {
-      if (accountActivation.checked == true) {
-        deactivateButton.removeAttribute('disabled');
-      } else {
-        deactivateButton.setAttribute('disabled', 'disabled');
-      }
-    });
-  }
-     function deactivate001() {
-    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-    const formElement = document.getElementById('formAccountDeactivation1');
-    const formData = new FormData(formElement);
-    if (accountActivation.checked == true) {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "You want to deactivate your account",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Deactivate"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            // If user confirms, make AJAX request to deactivate endpoint
-            fetch(formElement.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRFToken': csrftoken // CSRF token for security
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Handle success response
-                Swal.fire({
-                    title: "Deactivated!",
-                    text: "Your account has been deactivated.",
-                    icon: "success"
-                }).then(() => {
-                    // Reload the page after showing the alert
-                    location.reload();
+    <script>
+        $(window).on('load', function() {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
                 });
-            })
-            .catch(error => {
-                // Handle error
-                console.error('Error deactivating account:', error);
-                Swal.fire({
-                    title: "Error",
-                    text: "Failed to deactivate your account.",
-                    icon: "error"
-                });
-            });
-        }
-    });}
-}
-
- </script>
+            }
+        })
+    </script>
     {% endblock scriptjs %}
